@@ -1,0 +1,1908 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="jhonfvg">
+      
+      
+        <link rel="canonical" href="https://jfinfosena.github.io/25adso-rdbms/content/p2/">
+      
+      
+        <link rel="prev" href="../p1/">
+      
+      
+        <link rel="next" href="../p3/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.3">
+    
+    
+      
+        <title>SQL: Comandos Básicos y Tipos de Datos - RDBMS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sql-comandos-basicos-y-tipos-de-datos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="RDBMS" class="md-header__button md-logo" aria-label="RDBMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215m-6.56 0a.75.75 0 0 1 1.042.018.75.75 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RDBMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SQL: Comandos Básicos y Tipos de Datos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../p0/" class="md-tabs__link">
+          
+  
+    
+  
+  Contenido
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../pi/p1/" class="md-tabs__link">
+          
+  
+    
+  
+  Proyecto Integrador
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  Acerca de
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="RDBMS" class="md-nav__button md-logo" aria-label="RDBMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215m-6.56 0a.75.75 0 0 1 1.042.018.75.75 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"/></svg>
+
+    </a>
+    RDBMS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Contenido
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Contenido
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../p0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Definición y Tipos de Bases de Datos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../p1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entidades, Atributos y Relaciones en Bases de Datos Relacionales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SQL: Comandos Básicos y Tipos de Datos
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SQL: Comandos Básicos y Tipos de Datos
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-estructura-de-sql-ddl-dml-dcl-tcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Estructura de SQL: DDL, DML, DCL, TCL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Estructura de SQL: DDL, DML, DCL, TCL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-principales-de-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Características principales de SQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-ddl-data-definition-language-lenguaje-de-definicion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. DDL (Data Definition Language - Lenguaje de Definición de Datos)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-dml-data-manipulation-language-lenguaje-de-manipulacion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. DML (Data Manipulation Language - Lenguaje de Manipulación de Datos)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-dcl-data-control-language-lenguaje-de-control-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. DCL (Data Control Language - Lenguaje de Control de Datos)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tcl-transaction-control-language-lenguaje-de-control-de-transacciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. TCL (Transaction Control Language - Lenguaje de Control de Transacciones)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-comandos-basicos-create-insert-select-update-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Comandos Básicos: CREATE, INSERT, SELECT, UPDATE, DELETE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Comandos Básicos: CREATE, INSERT, SELECT, UPDATE, DELETE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. CREATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. INSERT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. SELECT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4. UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5. DELETE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tipos-de-datos-en-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Tipos de Datos en SQL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Tipos de Datos en SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-tipos-de-datos-numericos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Tipos de Datos Numéricos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-tipos-de-datos-de-cadena-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Tipos de Datos de Cadena (Texto)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tipos-de-datos-de-fecha-y-hora" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3. Tipos de Datos de Fecha y Hora
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-tipos-de-datos-booleanos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4. Tipos de Datos Booleanos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-tipos-de-datos-binarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5. Tipos de Datos Binarios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-otros-tipos-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6. Otros Tipos de Datos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consideraciones-adicionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consideraciones Adicionales
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actividad-creacion-de-una-base-de-datos-basica-para-una-escuela" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividad: Creación de una Base de Datos Básica para una Escuela
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actividad: Creación de una Base de Datos Básica para una Escuela">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enunciado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enunciado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrucciones-paso-a-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instrucciones Paso a Paso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pistas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pistas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../p3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Consultas en SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../p4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relaciones y JOINs en Bases de Datos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../p5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Actividad Final: Creación de una Actividad Diferente sobre Relaciones y JOINs en SQL (Video de 15 Minutos)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Proyecto Integrador
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Proyecto Integrador
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pi/p1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introducción Proyecto Integrador
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../blog/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acerca de
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-estructura-de-sql-ddl-dml-dcl-tcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Estructura de SQL: DDL, DML, DCL, TCL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Estructura de SQL: DDL, DML, DCL, TCL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-principales-de-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Características principales de SQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-ddl-data-definition-language-lenguaje-de-definicion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. DDL (Data Definition Language - Lenguaje de Definición de Datos)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-dml-data-manipulation-language-lenguaje-de-manipulacion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. DML (Data Manipulation Language - Lenguaje de Manipulación de Datos)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-dcl-data-control-language-lenguaje-de-control-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. DCL (Data Control Language - Lenguaje de Control de Datos)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tcl-transaction-control-language-lenguaje-de-control-de-transacciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. TCL (Transaction Control Language - Lenguaje de Control de Transacciones)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-comandos-basicos-create-insert-select-update-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Comandos Básicos: CREATE, INSERT, SELECT, UPDATE, DELETE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Comandos Básicos: CREATE, INSERT, SELECT, UPDATE, DELETE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. CREATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. INSERT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. SELECT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4. UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5. DELETE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tipos-de-datos-en-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Tipos de Datos en SQL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Tipos de Datos en SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-tipos-de-datos-numericos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Tipos de Datos Numéricos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-tipos-de-datos-de-cadena-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Tipos de Datos de Cadena (Texto)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tipos-de-datos-de-fecha-y-hora" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3. Tipos de Datos de Fecha y Hora
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-tipos-de-datos-booleanos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4. Tipos de Datos Booleanos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-tipos-de-datos-binarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5. Tipos de Datos Binarios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-otros-tipos-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6. Otros Tipos de Datos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consideraciones-adicionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consideraciones Adicionales
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actividad-creacion-de-una-base-de-datos-basica-para-una-escuela" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividad: Creación de una Base de Datos Básica para una Escuela
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actividad: Creación de una Base de Datos Básica para una Escuela">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enunciado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enunciado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrucciones-paso-a-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instrucciones Paso a Paso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pistas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pistas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sql-comandos-basicos-y-tipos-de-datos"><strong>SQL: Comandos Básicos y Tipos de Datos</strong></h1>
+<hr />
+<h2 id="1-estructura-de-sql-ddl-dml-dcl-tcl"><strong>1. Estructura de SQL: DDL, DML, DCL, TCL</strong></h2>
+<p><strong>SQL (Structured Query Language)</strong>, o Lenguaje de Consulta Estructurado, es un lenguaje estándar diseñado para gestionar, manipular y consultar datos en <strong>bases de datos relacionales</strong>. Permite a los usuarios interactuar con sistemas de gestión de bases de datos (SGBD) como MySQL, PostgreSQL, SQL Server, Oracle, SQLite, entre otros, para realizar operaciones como crear tablas, insertar datos, consultar información, actualizar registros, eliminar datos y administrar permisos.</p>
+<h3 id="caracteristicas-principales-de-sql"><strong>Características principales de SQL</strong></h3>
+<ol>
+<li><strong>Estandarizado</strong>: SQL sigue estándares internacionales (como ANSI/ISO), aunque cada SGBD puede tener extensiones o variaciones propias.</li>
+<li><strong>Declarativo</strong>: Los usuarios especifican <strong>qué</strong> quieren obtener o hacer, no <strong>cómo</strong> hacerlo. El SGBD se encarga de optimizar la ejecución.</li>
+<li><strong>Versátil</strong>: Sirve tanto para tareas simples (consultar una tabla) como para operaciones complejas (uniones de múltiples tablas, cálculos estadísticos, etc.).</li>
+<li><strong>No sensible a mayúsculas/minúsculas</strong>: Los comandos como <code>SELECT</code> y <code>select</code> son equivalentes, aunque los datos en las tablas sí pueden ser sensibles a mayúsculas.</li>
+</ol>
+<h3 id="11-ddl-data-definition-language-lenguaje-de-definicion-de-datos"><strong>1.1. DDL (Data Definition Language - Lenguaje de Definición de Datos)</strong></h3>
+<p>El DDL se utiliza para <strong>definir y modificar la estructura</strong> de los objetos en una base de datos, como tablas, esquemas, índices, etc. Los comandos DDL afectan el diseño de la base de datos y suelen ser utilizados por administradores de bases de datos (DBAs).</p>
+<ul>
+<li><strong>Propósito</strong>: Crear, modificar o eliminar estructuras de la base de datos.</li>
+<li><strong>Características</strong>:</li>
+<li>Los comandos DDL son <strong>autocommit</strong>, es decir, los cambios se aplican inmediatamente y no se pueden deshacer a menos que se use un mecanismo de respaldo.</li>
+<li>
+<p>No manipulan datos, solo la estructura.</p>
+</li>
+<li>
+<p><strong>Comandos principales</strong>:</p>
+</li>
+<li><strong>CREATE</strong>: Crea un nuevo objeto (tabla, base de datos, índice, etc.).</li>
+<li><strong>ALTER</strong>: Modifica un objeto existente (agregar/modificar/eliminar columnas, restricciones, etc.).</li>
+<li><strong>DROP</strong>: Elimina un objeto de la base de datos.</li>
+<li><strong>TRUNCATE</strong>: Elimina todos los datos de una tabla, pero conserva su estructura.</li>
+<li>
+<p><strong>RENAME</strong>: Cambia el nombre de un objeto.</p>
+</li>
+<li>
+<p><strong>Ejemplo</strong>:
+  <div class="highlight"><pre><span></span><code><span class="c1">-- Crear una tabla</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="w">    </span><span class="n">salario</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">-- Modificar la tabla para agregar una columna</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">fecha_contratacion</span><span class="w"> </span><span class="nb">DATE</span><span class="p">;</span>
+
+<span class="c1">-- Eliminar la tabla</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">empleados</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="12-dml-data-manipulation-language-lenguaje-de-manipulacion-de-datos"><strong>1.2. DML (Data Manipulation Language - Lenguaje de Manipulación de Datos)</strong></h3>
+<p>El DML se utiliza para <strong>manipular los datos</strong> almacenados en las tablas, como insertar, actualizar, eliminar o consultar registros.</p>
+<ul>
+<li><strong>Propósito</strong>: Gestionar el contenido de las tablas.</li>
+<li><strong>Características</strong>:</li>
+<li>Los comandos DML no modifican la estructura, solo los datos.</li>
+<li>
+<p>Los cambios pueden deshacerse si no se confirma la transacción (depende del sistema de gestión de bases de datos y TCL).</p>
+</li>
+<li>
+<p><strong>Comandos principales</strong>:</p>
+</li>
+<li><strong>INSERT</strong>: Agrega nuevos registros a una tabla.</li>
+<li><strong>UPDATE</strong>: Modifica registros existentes.</li>
+<li><strong>DELETE</strong>: Elimina registros de una tabla.</li>
+<li>
+<p><strong>SELECT</strong>: Consulta datos de una o más tablas.</p>
+</li>
+<li>
+<p><strong>Ejemplo</strong>:
+  <div class="highlight"><pre><span></span><code><span class="c1">-- Insertar un registro</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">salario</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Juan Pérez&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">50000</span><span class="p">.</span><span class="mi">00</span><span class="p">);</span>
+
+<span class="c1">-- Actualizar un registro</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">salario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">55000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- Eliminar un registro</span>
+<span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- Consultar datos</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">empleados</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="13-dcl-data-control-language-lenguaje-de-control-de-datos"><strong>1.3. DCL (Data Control Language - Lenguaje de Control de Datos)</strong></h3>
+<p>El DCL se utiliza para <strong>controlar el acceso y los permisos</strong> en la base de datos, garantizando la seguridad y la integridad.</p>
+<ul>
+<li><strong>Propósito</strong>: Definir quién puede acceder a los datos y qué operaciones pueden realizar.</li>
+<li><strong>Características</strong>:</li>
+<li>Los comandos DCL son gestionados por administradores para establecer políticas de seguridad.</li>
+<li>
+<p>A menudo, los cambios son permanentes a menos que se revoquen explícitamente.</p>
+</li>
+<li>
+<p><strong>Comandos principales</strong>:</p>
+</li>
+<li><strong>GRANT</strong>: Otorga permisos a un usuario o rol (lectura, escritura, ejecución, etc.).</li>
+<li><strong>REVOKE</strong>: Revoca permisos previamente otorgados.</li>
+<li>
+<p><strong>DENY</strong> (en algunos sistemas como SQL Server): Niega explícitamente un permiso.</p>
+</li>
+<li>
+<p><strong>Ejemplo</strong>:
+  <div class="highlight"><pre><span></span><code><span class="c1">-- Otorgar permiso de lectura a un usuario</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">usuario1</span><span class="p">;</span>
+
+<span class="c1">-- Revocar el permiso</span>
+<span class="k">REVOKE</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">usuario1</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="14-tcl-transaction-control-language-lenguaje-de-control-de-transacciones"><strong>1.4. TCL (Transaction Control Language - Lenguaje de Control de Transacciones)</strong></h3>
+<p>El TCL se utiliza para <strong>gestionar transacciones</strong> en la base de datos, asegurando la consistencia de los datos.</p>
+<ul>
+<li><strong>Propósito</strong>: Controlar cómo y cuándo los cambios en la base de datos se hacen permanentes.</li>
+<li><strong>Características</strong>:</li>
+<li>Los comandos TCL trabajan con transacciones, que son conjuntos de operaciones que se ejecutan como una unidad (todo o nada).</li>
+<li>
+<p>Son esenciales para mantener la integridad de los datos en operaciones complejas.</p>
+</li>
+<li>
+<p><strong>Comandos principales</strong>:</p>
+</li>
+<li><strong>COMMIT</strong>: Confirma una transacción, haciendo permanentes los cambios.</li>
+<li><strong>ROLLBACK</strong>: Deshace los cambios realizados en una transacción.</li>
+<li><strong>SAVEPOINT</strong>: Establece un punto intermedio dentro de una transacción para volver a él si es necesario.</li>
+<li>
+<p><strong>SET TRANSACTION</strong>: Configura propiedades de una transacción (como el nivel de aislamiento).</p>
+</li>
+<li>
+<p><strong>Ejemplo</strong>:
+  <div class="highlight"><pre><span></span><code><span class="c1">-- Iniciar una transacción</span>
+<span class="k">BEGIN</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="p">;</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">salario</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ana Gómez&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">60000</span><span class="p">.</span><span class="mi">00</span><span class="p">);</span>
+<span class="n">SAVEPOINT</span><span class="w"> </span><span class="n">punto1</span><span class="p">;</span>
+
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">salario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">65000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+
+<span class="c1">-- Deshacer hasta el punto1</span>
+<span class="k">ROLLBACK</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">punto1</span><span class="p">;</span>
+
+<span class="c1">-- Confirmar la transacción</span>
+<span class="k">COMMIT</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+</ul>
+<hr />
+<h2 id="2-comandos-basicos-create-insert-select-update-delete"><strong>2. Comandos Básicos: CREATE, INSERT, SELECT, UPDATE, DELETE</strong></h2>
+<p>A continuación, se detalla cada uno de los comandos básicos mencionados, con explicaciones y ejemplos prácticos.</p>
+<h3 id="21-create"><strong>2.1. CREATE</strong></h3>
+<ul>
+<li><strong>Categoría</strong>: DDL</li>
+<li><strong>Propósito</strong>: Crear nuevos objetos en la base de datos, como tablas, bases de datos, índices, vistas, etc.</li>
+<li><strong>Sintaxis básica</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">columna1</span><span class="w"> </span><span class="n">tipo_dato</span><span class="w"> </span><span class="p">[</span><span class="n">restricciones</span><span class="p">],</span>
+<span class="w">    </span><span class="n">columna2</span><span class="w"> </span><span class="n">tipo_dato</span><span class="w"> </span><span class="p">[</span><span class="n">restricciones</span><span class="p">],</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">);</span>
+</code></pre></div></li>
+<li><strong>Ejemplo</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_cliente</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fecha_registro</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_DATE</span>
+<span class="p">);</span>
+</code></pre></div></li>
+<li><strong>Explicación</strong>:</li>
+<li>Se crea una tabla llamada <code>clientes</code>.</li>
+<li><code>id_cliente</code> es un entero y la clave primaria.</li>
+<li><code>nombre</code> es obligatorio (<code>NOT NULL</code>).</li>
+<li><code>email</code> debe ser único (<code>UNIQUE</code>).</li>
+<li><code>fecha_registro</code> toma la fecha actual por defecto.</li>
+</ul>
+<h3 id="22-insert"><strong>2.2. INSERT</strong></h3>
+<ul>
+<li><strong>Categoría</strong>: DML</li>
+<li><strong>Propósito</strong>: Insertar nuevos registros en una tabla.</li>
+<li><strong>Sintaxis básica</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="w"> </span><span class="p">(</span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">valor1</span><span class="p">,</span><span class="w"> </span><span class="n">valor2</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</code></pre></div></li>
+<li><strong>Ejemplo</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="p">(</span><span class="n">id_cliente</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w"> </span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;María López&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;maria@correo.com&#39;</span><span class="p">);</span>
+</code></pre></div></li>
+<li><strong>Variaciones</strong>:</li>
+<li>Insertar múltiples registros:
+    <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="p">(</span><span class="n">id_cliente</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w"> </span>
+<span class="k">VALUES</span><span class="w"> </span>
+<span class="w">    </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Pedro Sánchez&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;pedro@correo.com&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Laura Martínez&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;laura@correo.com&#39;</span><span class="p">);</span>
+</code></pre></div></li>
+<li>Insertar datos desde otra tabla:
+    <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">clientes_nuevos</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">fecha_registro</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;2025-01-01&#39;</span><span class="p">;</span>
+</code></pre></div></li>
+</ul>
+<h3 id="23-select"><strong>2.3. SELECT</strong></h3>
+<ul>
+<li><strong>Categoría</strong>: DML</li>
+<li><strong>Propósito</strong>: Consultar datos de una o más tablas.</li>
+<li><strong>Sintaxis básica</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="w"> </span><span class="p">[</span><span class="k">WHERE</span><span class="w"> </span><span class="n">condición</span><span class="p">];</span>
+</code></pre></div></li>
+<li><strong>Ejemplo</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_cliente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div></li>
+<li><strong>Variaciones</strong>:</li>
+<li>Seleccionar todo: <code>SELECT * FROM clientes;</code></li>
+<li>Usar funciones de agregación:
+    <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_clientes</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">clientes</span><span class="p">;</span>
+</code></pre></div></li>
+<li>Unir tablas (JOIN):
+    <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">fecha_pedido</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="k">c</span><span class="w"> </span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">pedidos</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">id_cliente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">id_cliente</span><span class="p">;</span>
+</code></pre></div></li>
+</ul>
+<h3 id="24-update"><strong>2.4. UPDATE</strong></h3>
+<ul>
+<li><strong>Categoría</strong>: DML</li>
+<li><strong>Propósito</strong>: Modificar registros existentes en una tabla.</li>
+<li><strong>Sintaxis básica</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">columna1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">[</span><span class="k">WHERE</span><span class="w"> </span><span class="n">condición</span><span class="p">];</span>
+</code></pre></div></li>
+<li><strong>Ejemplo</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;maria.nuevo@correo.com&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_cliente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div></li>
+<li><strong>Precaución</strong>:</li>
+<li>Sin la cláusula <code>WHERE</code>, se actualizan <strong>todos los registros</strong>.</li>
+<li>Ejemplo peligroso:
+    <div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;error@correo.com&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- ¡Actualiza todos los emails!</span>
+</code></pre></div></li>
+</ul>
+<h3 id="25-delete"><strong>2.5. DELETE</strong></h3>
+<ul>
+<li><strong>Categoría</strong>: DML</li>
+<li><strong>Propósito</strong>: Eliminar registros de una tabla.</li>
+<li><strong>Sintaxis básica</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="w"> </span><span class="p">[</span><span class="k">WHERE</span><span class="w"> </span><span class="n">condición</span><span class="p">];</span>
+</code></pre></div></li>
+<li><strong>Ejemplo</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_cliente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div></li>
+<li><strong>Precaución</strong>:</li>
+<li>Sin <code>WHERE</code>, se eliminan <strong>todos los registros</strong>.</li>
+<li>Ejemplo peligroso:
+    <div class="highlight"><pre><span></span><code><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">clientes</span><span class="p">;</span><span class="w"> </span><span class="c1">-- ¡Elimina todos los clientes!</span>
+</code></pre></div></li>
+</ul>
+<hr />
+<h2 id="3-tipos-de-datos-en-sql"><strong>3. Tipos de Datos en SQL</strong></h2>
+<p>Los tipos de datos en SQL definen qué tipo de valores puede almacenar una columna. Cada sistema de gestión de bases de datos (SGBD) como MySQL, PostgreSQL, SQL Server u Oracle puede tener ligeras variaciones, pero los tipos principales son estándar. A continuación, se describen los más comunes:</p>
+<h3 id="31-tipos-de-datos-numericos"><strong>3.1. Tipos de Datos Numéricos</strong></h3>
+<ul>
+<li><strong>INT (INTEGER)</strong>:</li>
+<li>Almacena números enteros (sin decimales).</li>
+<li>Rango típico: -2,147,483,648 a 2,147,483,647 (4 bytes).</li>
+<li>Ejemplo: <code>id INT</code></li>
+<li>
+<p>Uso: Identificadores, contadores.</p>
+</li>
+<li>
+<p><strong>BIGINT</strong>:</p>
+</li>
+<li>Enteros de mayor rango (8 bytes).</li>
+<li>Ejemplo: <code>id_transaccion BIGINT</code></li>
+<li>
+<p>Uso: Cuando se espera un volumen muy grande de datos.</p>
+</li>
+<li>
+<p><strong>SMALLINT</strong>:</p>
+</li>
+<li>Enteros de menor rango (2 bytes).</li>
+<li>Ejemplo: <code>edad SMALLINT</code></li>
+<li>
+<p>Uso: Valores pequeños como edades o categorías.</p>
+</li>
+<li>
+<p><strong>DECIMAL (NUMERIC)</strong>:</p>
+</li>
+<li>Números con decimales de precisión fija.</li>
+<li>Sintaxis: <code>DECIMAL(M,D)</code> donde <code>M</code> es el total de dígitos y <code>D</code> es el número de decimales.</li>
+<li>Ejemplo: <code>salario DECIMAL(10,2)</code> (hasta 10 dígitos, 2 decimales, e.g., 12345678.90).</li>
+<li>
+<p>Uso: Valores monetarios, cálculos financieros.</p>
+</li>
+<li>
+<p><strong>FLOAT</strong> / <strong>DOUBLE</strong>:</p>
+</li>
+<li>Números de punto flotante (aproximados).</li>
+<li>Ejemplo: <code>temperatura FLOAT</code></li>
+<li>Uso: Valores científicos, medidas aproximadas.</li>
+</ul>
+<h3 id="32-tipos-de-datos-de-cadena-texto"><strong>3.2. Tipos de Datos de Cadena (Texto)</strong></h3>
+<ul>
+<li><strong>CHAR(n)</strong>:</li>
+<li>Cadena de longitud fija (rellena con espacios si es necesario).</li>
+<li>Ejemplo: <code>codigo CHAR(5)</code> (siempre 5 caracteres, e.g., "ABC  ").</li>
+<li>
+<p>Uso: Códigos de longitud fija.</p>
+</li>
+<li>
+<p><strong>VARCHAR(n)</strong>:</p>
+</li>
+<li>Cadena de longitud variable (máximo <code>n</code> caracteres).</li>
+<li>Ejemplo: <code>nombre VARCHAR(100)</code></li>
+<li>
+<p>Uso: Nombres, descripciones, correos electrónicos.</p>
+</li>
+<li>
+<p><strong>TEXT</strong>:</p>
+</li>
+<li>Texto de longitud variable y gran tamaño (sin límite específico en algunos SGBD).</li>
+<li>Ejemplo: <code>descripcion TEXT</code></li>
+<li>Uso: Textos largos como comentarios o artículos.</li>
+</ul>
+<h3 id="33-tipos-de-datos-de-fecha-y-hora"><strong>3.3. Tipos de Datos de Fecha y Hora</strong></h3>
+<ul>
+<li><strong>DATE</strong>:</li>
+<li>Almacena fechas (año, mes, día).</li>
+<li>Formato típico: <code>YYYY-MM-DD</code>.</li>
+<li>Ejemplo: <code>fecha_nacimiento DATE</code></li>
+<li>
+<p>Uso: Fechas de nacimiento, registros.</p>
+</li>
+<li>
+<p><strong>TIME</strong>:</p>
+</li>
+<li>Almacena horas (hora, minuto, segundo).</li>
+<li>Formato típico: <code>HH:MM:SS</code>.</li>
+<li>Ejemplo: <code>hora_entrada TIME</code></li>
+<li>
+<p>Uso: Horarios.</p>
+</li>
+<li>
+<p><strong>DATETIME</strong> / <strong>TIMESTAMP</strong>:</p>
+</li>
+<li>Almacena fecha y hora combinadas.</li>
+<li><code>DATETIME</code>: Generalmente usado para valores fijos.</li>
+<li><code>TIMESTAMP</code>: Puede actualizarse automáticamente (e.g., al modificar un registro).</li>
+<li>Ejemplo: <code>fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP</code></li>
+<li>Uso: Marcas de tiempo, auditoría.</li>
+</ul>
+<h3 id="34-tipos-de-datos-booleanos"><strong>3.4. Tipos de Datos Booleanos</strong></h3>
+<ul>
+<li><strong>BOOLEAN</strong>:</li>
+<li>Almacena valores <code>TRUE</code> o <code>FALSE</code> (en algunos SGBD, como MySQL, se usa <code>TINYINT(1)</code> con 0 y 1).</li>
+<li>Ejemplo: <code>activo BOOLEAN</code></li>
+<li>Uso: Indicadores de estado (activo/inactivo).</li>
+</ul>
+<h3 id="35-tipos-de-datos-binarios"><strong>3.5. Tipos de Datos Binarios</strong></h3>
+<ul>
+<li><strong>BINARY(n)</strong> / <strong>VARBINARY(n)</strong>:</li>
+<li>Similar a <code>CHAR</code> y <code>VARCHAR</code>, pero para datos binarios (no texto).</li>
+<li>Ejemplo: <code>hash BINARY(32)</code></li>
+<li>
+<p>Uso: Almacenar hash o datos binarios.</p>
+</li>
+<li>
+<p><strong>BLOB</strong>:</p>
+</li>
+<li>Objetos binarios grandes (imágenes, archivos, etc.).</li>
+<li>Ejemplo: <code>imagen BLOB</code></li>
+<li>Uso: Multimedia.</li>
+</ul>
+<h3 id="36-otros-tipos-de-datos"><strong>3.6. Otros Tipos de Datos</strong></h3>
+<ul>
+<li><strong>JSON</strong>:</li>
+<li>Almacena datos en formato JSON.</li>
+<li>Ejemplo: <code>configuracion JSON</code></li>
+<li>
+<p>Uso: Datos estructurados flexibles (en SGBD modernos como PostgreSQL o MySQL).</p>
+</li>
+<li>
+<p><strong>ENUM</strong>:</p>
+</li>
+<li>Permite definir un conjunto de valores permitidos.</li>
+<li>Ejemplo: <code>estado ENUM('activo', 'inactivo', 'pendiente')</code></li>
+<li>
+<p>Uso: Categorías predefinidas.</p>
+</li>
+<li>
+<p><strong>SET</strong> (en MySQL):</p>
+</li>
+<li>Similar a <code>ENUM</code>, pero permite múltiples valores.</li>
+<li>Ejemplo: <code>permisos SET('leer', 'escribir', 'ejecutar')</code></li>
+<li>Uso: Conjuntos de opciones.</li>
+</ul>
+<hr />
+<h2 id="consideraciones-adicionales"><strong>Consideraciones Adicionales</strong></h2>
+<ol>
+<li><strong>Compatibilidad entre SGBD</strong>:</li>
+<li>Los tipos de datos y comandos pueden variar ligeramente entre sistemas como MySQL, PostgreSQL, SQL Server, Oracle, etc. Por ejemplo:<ul>
+<li>MySQL usa <code>TINYINT(1)</code> para booleanos, mientras que PostgreSQL usa <code>BOOLEAN</code>.</li>
+<li><code>DATETIME</code> en SQL Server es diferente de <code>TIMESTAMP</code> en MySQL.</li>
+</ul>
+</li>
+<li>
+<p>Siempre consulta la documentación del SGBD que estés utilizando.</p>
+</li>
+<li>
+<p><strong>Buenas Prácticas</strong>:</p>
+</li>
+<li>Usa tipos de datos adecuados para optimizar el almacenamiento y el rendimiento (e.g., no uses <code>VARCHAR(255)</code> para un código de 5 caracteres).</li>
+<li>Define restricciones como <code>NOT NULL</code>, <code>PRIMARY KEY</code>, <code>FOREIGN KEY</code> para garantizar la integridad.</li>
+<li>
+<p>Normaliza las bases de datos para evitar redundancias.</p>
+</li>
+<li>
+<p><strong>Ejemplo Completo</strong>:
+   <div class="highlight"><pre><span></span><code><span class="c1">-- Crear una base de datos y tabla</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">empresa</span><span class="p">;</span>
+<span class="n">USE</span><span class="w"> </span><span class="n">empresa</span><span class="p">;</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">departamentos</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_depto</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ubicacion</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_empleado</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">salario</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">id_depto</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fecha_contratacion</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">activo</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_depto</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">departamentos</span><span class="p">(</span><span class="n">id_depto</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">-- Insertar datos</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">departamentos</span><span class="w"> </span><span class="p">(</span><span class="n">id_depto</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ubicacion</span><span class="p">)</span><span class="w"> </span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ventas&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Piso 3&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;TI&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Piso 5&#39;</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="p">(</span><span class="n">id_empleado</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">salario</span><span class="p">,</span><span class="w"> </span><span class="n">id_depto</span><span class="p">,</span><span class="w"> </span><span class="n">fecha_contratacion</span><span class="p">)</span><span class="w"> </span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ana Gómez&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">60000</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-01-15&#39;</span><span class="p">);</span>
+
+<span class="c1">-- Consultar datos</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">nombre</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">departamento</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="n">e</span><span class="w"> </span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">departamentos</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">id_depto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">id_depto</span><span class="p">;</span>
+
+<span class="c1">-- Actualizar datos</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">salario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">65000</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_empleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- Eliminar datos</span>
+<span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_empleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+</ol>
+<hr />
+<h2 id="actividad-creacion-de-una-base-de-datos-basica-para-una-escuela"><strong>Actividad: Creación de una Base de Datos Básica para una Escuela</strong></h2>
+<h3 id="enunciado"><strong>Enunciado</strong></h3>
+<p>Eres el administrador de una escuela que necesita organizar la información de sus <strong>estudiantes</strong>, <strong>profesores</strong>, <strong>cursos</strong> y <strong>aulas</strong> en una base de datos relacional. Tu tarea es diseñar y crear una base de datos llamada <code>Escuela</code> con cuatro tablas: <code>estudiantes</code>, <code>profesores</code>, <code>cursos</code> y <code>aulas</code>. Cada tabla debe tener columnas con tipos de datos apropiados y una clave primaria para identificar registros únicos. Sigue los pasos a continuación para completar la actividad.</p>
+<h3 id="instrucciones-paso-a-paso"><strong>Instrucciones Paso a Paso</strong></h3>
+<ol>
+<li>
+<p><strong>Crea la base de datos</strong>:</p>
+<ul>
+<li>Usa el comando <code>CREATE DATABASE</code> para crear una base de datos llamada <code>Escuela</code>.     </li>
+</ul>
+</li>
+<li>
+<p><strong>Crea la tabla <code>estudiantes</code></strong>:</p>
+<ul>
+<li>Debe tener las siguientes columnas:<ul>
+<li><code>id_estudiante</code>: Identificador único del estudiante (entero, clave primaria).</li>
+<li><code>nombre</code>: Nombre del estudiante (texto, máximo 100 caracteres, obligatorio).</li>
+<li><code>fecha_nacimiento</code>: Fecha de nacimiento del estudiante (fecha, obligatorio).</li>
+</ul>
+</li>
+<li>Usa tipos de datos adecuados y agrega la restricción <code>PRIMARY KEY</code> para <code>id_estudiante</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Crea la tabla <code>profesores</code></strong>:</p>
+<ul>
+<li>Debe tener las siguientes columnas:<ul>
+<li><code>id_profesor</code>: Identificador único del profesor (entero, clave primaria).</li>
+<li><code>nombre</code>: Nombre del profesor (texto, máximo 100 caracteres, obligatorio).</li>
+<li><code>email</code>: Correo electrónico del profesor (texto, máximo 100 caracteres, obligatorio).</li>
+</ul>
+</li>
+<li>Usa la restricción <code>PRIMARY KEY</code> para <code>id_profesor</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Crea la tabla <code>cursos</code></strong>:</p>
+<ul>
+<li>Debe tener las siguientes columnas:<ul>
+<li><code>id_curso</code>: Identificador único del curso (entero, clave primaria).</li>
+<li><code>nombre_curso</code>: Nombre del curso (texto, máximo 150 caracteres, obligatorio).</li>
+<li><code>creditos</code>: Número de créditos del curso (entero, obligatorio).</li>
+</ul>
+</li>
+<li>Usa la restricción <code>PRIMARY KEY</code> para <code>id_curso</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Crea la tabla <code>aulas</code></strong>:</p>
+<ul>
+<li>Debe tener las siguientes columnas:<ul>
+<li><code>id_aula</code>: Identificador único del aula (entero, clave primaria).</li>
+<li><code>nombre_aula</code>: Nombre o código del aula (texto, máximo 50 caracteres, obligatorio).</li>
+<li><code>capacidad</code>: Capacidad máxima de estudiantes (entero, obligatorio).</li>
+</ul>
+</li>
+<li>Usa la restricción <code>PRIMARY KEY</code> para <code>id_aula</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Prueba y verifica tu base de datos</strong>:</p>
+<ul>
+<li>Escribe el código SQL completo para crear la base de datos y las tablas.</li>
+<li>Opcional: Inserta un registro de ejemplo en cada tabla para verificar que las tablas funcionan correctamente (esto no es obligatorio, pero es útil para practicar el comando <code>INSERT</code>).</li>
+</ul>
+</li>
+</ol>
+<h3 id="pistas"><strong>Pistas</strong></h3>
+<ul>
+<li>Usa tipos de datos como <code>INT</code>, <code>VARCHAR</code>, <code>DATE</code> y asegúrate de que sean adecuados para cada columna.</li>
+<li>Asegúrate de que cada tabla tenga una clave primaria definida con <code>PRIMARY KEY</code>.</li>
+<li>Si usas MySQL, PostgreSQL u otro SGBD, la sintaxis es generalmente la misma, pero verifica la documentación para comandos como <code>DEFAULT</code> o tipos de datos específicos.</li>
+</ul>
+<h3 id="entrega"><strong>Entrega</strong></h3>
+<p>Escribe un archivo SQL que contenga todos los comandos necesarios para crear la base de datos y las tablas. Asegúrate de incluir comentarios que expliquen cada paso.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2025 &copy; by JFVG
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs.sticky", "navigation.tabs", "navigation.top", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
